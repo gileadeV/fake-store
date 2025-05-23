@@ -53,5 +53,20 @@ export async function fetchFromAPI<T = string | number>({
 }
 
 function getBaseUrl() {
+  if (typeof window !== "undefined") {
+    // Rodando no client (navegador)
+    return "";
+  }
+
+  // Rodando no server
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+  if (process.env.NEXT_PUBLIC_API_URL) {
+    return process.env.NEXT_PUBLIC_API_URL;
+  }
+
+  // Fallback local
   return "http://localhost:3000";
 }
