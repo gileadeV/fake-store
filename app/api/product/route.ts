@@ -11,9 +11,9 @@ export async function GET(req: NextRequest) {
       return notFound();
     }
 
+    console.log(product)
     const product = await getProductById(Number(id));
 
-    console.log(product)
 
     if (!product) {
       return notFound();
