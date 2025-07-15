@@ -13,6 +13,8 @@ export async function GET(req: NextRequest) {
 
     const product = await getProductById(Number(id));
 
+    console.log(product)
+
     if (!product) {
       return notFound();
     }
